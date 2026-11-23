@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#651e35" />
+  <meta name="description" content="Shabdalaya: a living Hindi-English dictionary, written in heritage." />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Gelasio:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./data.js"></script>
+  <script defer src="./app.js"></script>
+  <title>शब्दालय — The Royal Manuscript Dictionary</title>
+</head>
+<body>
+ <div class="top-ribbon" aria-hidden="true"><span>✦</span><span>WORDS ARE OUR HERITAGE</span><span>✦</span></div>
+ <div class="site-shell">
+  <header class="site-header">
+    <a href="#home" class="brand" id="brand" aria-label="Shabdalaya home">
+      <div class="brand-seal">श</div>
+      <div class="brand-type"><strong>शब्दालय</strong><small>THE HOUSE OF WORDS</small></div>
+    </a>
+    <nav class="header-nav" aria-label="Main navigation">
+      <button class="nav-btn active" data-view="discover">Discover</button>
+      <button class="nav-btn" data-view="saved">Saved <span id="savedCount" class="count-bubble">0</span></button>
+      <button class="nav-btn" data-view="recent">Recent</button>
+    </nav>
+    <span class="header-label">हिन्दी ↔ ENGLISH <span class="header-star">✳</span></span>
+  </header>
+
+  <main id="home">
+   <section class="hero" aria-labelledby="heroTitle">
+     <div class="hero-corner top-left">❧</div><div class="hero-corner top-right">❧</div>
+     <div class="hero-inner">
+       <p class="eyebrow"><span class="line"></span> AN EXPLORATION OF LANGUAGE <span class="line"></span></p>
+       <div class="hero-art" aria-hidden="true"><span class="art-sun">✺</span><span class="art-letter">अ</span><span class="art-line">❧ ❧ ❧</span></div>
+       <h1 id="heroTitle">Every word<br/> <em>holds a world.</em></h1>
+       <p class="hero-hindi" lang="hi">हर शब्द में एक संसार बसता है।</p>
+       <p class="hero-subtitle">An exquisite little archive of Hindi words, their meanings, and the stories they carry.</p>
+       <form class="search-form" id="searchForm" role="search">
+        <label for="searchInput" class="sr-only">Search Hindi or romanised words</label>
+        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7.1"/><path d="m16 16 5 5"/></svg>
+        <input id="searchInput" type="search" placeholder="Try ‘प्रेम’, ‘prem’, or ‘dharma’…" autocomplete="off" spellcheck="false" />
+        <button type="button" id="clearSearch" class="clear-search" aria-label="Clear search" hidden>✕</button>
+        <button type="submit" class="search-submit">Find a word <span aria-hidden="true">↗</span></button>
+       </form>
+       <p class="search-tip">SEARCH IN <b>हिन्दी</b> OR <b>ROMAN SCRIPT</b> <span aria-hidden="true">✦</span> SPELLING VARIATIONS WELCOME</p>
+     </div>
+     <div class="hero-corner bottom-left">❧</div><div class="hero-corner bottom-right">❧</div>
+   </section>
+
+   <section class="archive" aria-live="polite">
+    <div class="archive-heading"><div><p class="section-kicker" id="sectionKicker">✧ CURATED COLLECTION</p><h2 id="sectionTitle">A treasury of <i>words</i></h2><p class="section-description" id="sectionDescription">Begin your journey through the language.</p></div><div class="archive-count"><span id="resultCount">60</span><small>ENTRIES</small></div></div>
+    <div class="chip-row" id="quickSearch" aria-label="Popular searches"><span>EXPLORE</span><button data-query="प्रेम">प्रेम</button><button data-query="dharma">dharma</button><button data-query="shanti">shanti</button><button data-query="ज्ञान">ज्ञान</button><button data-query="nature">nature</button></div>
+    <div class="word-grid" id="wordGrid"></div>
+    <div class="empty-state" id="emptyState" hidden><div class="empty-symbol">✢</div><h3 id="emptyHeading">No words found</h3><p id="emptyMessage">Try another spelling, in Hindi or English.</p><button class="text-action" id="resetSearch">Explore all words ↗</button></div>
+    <div class="load-more-wrap" id="loadMoreWrap"><button id="loadMore" class="load-more">View more from the archive <span>↓</span></button></div>
+   </section>
+
+   <section class="closing-note"><div class="closing-ornament">❦</div><p>“A language is not just words,<br/> but a way of seeing the world.”</p><span>WORDS CONNECT WORLDS</span></section>
+  </main>
+  <footer><div class="footer-mark">शब्दालय <span>✳</span></div><p>Made with reverence for language.</p><small>A HERITAGE OF WORDS · © 2026</small></footer>
+ </div>
+ <div class="modal-overlay" id="detailOverlay" hidden>
+  <section class="detail-modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle" tabindex="-1">
+   <div class="detail-header"><span>✦ THE WORD ARCHIVE · ENTRY <span id="detailNumber"></span></span><button id="closeModal" aria-label="Close word details">✕</button></div>
+   <div class="detail-body"><span class="detail-eyebrow">शब्द • WORD</span><h2 id="detailTitle" lang="hi"></h2><div class="detail-pronounce"><span id="detailIast"></span><button id="speakWord" aria-label="Pronounce word" title="Listen to pronunciation">♫ Hear</button></div><div class="detail-rule">❧ <span>✦</span> ❧</div>
+    <p class="detail-label">PART OF SPEECH</p><p id="detailPos" class="detail-value"></p>
+    <p class="detail-label">MEANINGS</p><div class="meaning-tags" id="detailMeanings"></div>
+    <p class="detail-label">ROMANISED SPELLINGS</p><p id="detailVariants" class="detail-value"></p>
+    <p class="detail-label">IN A SENTENCE</p><blockquote lang="hi" id="detailExample"></blockquote>
+    <button id="detailBookmark" class="detail-save">☆ Save this word</button>
+   </div>
+  </section>
+ </div>
+ <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
